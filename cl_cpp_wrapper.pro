@@ -9,13 +9,16 @@ QT       -= gui
 TARGET = cl_cpp_wrapper
 TEMPLATE = lib
 CONFIG += staticlib
+QMAKE_CXXFLAGS += -std=gnu++0x
 
-SOURCES +=
+SOURCES += \
+    CpuGpuBuffer.cpp
 
 HEADERS += \
     clcpu.h \
     clgpu.h \
-    clcpugpu.cl.h
+    clcpugpu.cl.h \
+    CpuGpuBuffer.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
