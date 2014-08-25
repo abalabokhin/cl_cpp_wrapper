@@ -1,7 +1,7 @@
 #ifndef CPUGPUBUFFER_H
 #define CPUGPUBUFFER_H
 
-#include <QVector>
+#include <vector>
 #include <CL/cl.hpp>
 
 enum class BufferType {
@@ -23,7 +23,7 @@ public:
     void markBufferAsChanged(BufferType bufferType);
 
 private:
-    QVector<T> cpuBuffer;
+    std::vector<T> cpuBuffer;
     cl::Buffer gpuBuffer;
     BufferType type;
     size_t size;

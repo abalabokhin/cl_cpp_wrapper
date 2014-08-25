@@ -6,7 +6,7 @@ CpuGpuBuffer<T>::CpuGpuBuffer(cl::Context context, BufferType bufferType, size_t
 {
     switch (bufferType) {
         case BufferType::CPU:
-            cpuBuffer = QVector<T>(size);
+            cpuBuffer = std::vector<T>(size);
             break;
         case BufferType::GPU:
             gpuBuffer = cl::Buffer(context, CL_MEM_READ_WRITE, size * sizeof(T));
