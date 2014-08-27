@@ -20,7 +20,8 @@ HEADERS += \
     clgpu.h \
     clcpugpu.cl.h \
     CpuGpuBuffer.h \
-    clManager.h
+    clManager.h \
+    clKernel.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
