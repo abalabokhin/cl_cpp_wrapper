@@ -12,13 +12,15 @@ CONFIG += staticlib
 QMAKE_CXXFLAGS += -std=gnu++0x
 
 SOURCES += \
-    CpuGpuBuffer.cpp
+    CpuGpuBuffer.cpp \
+    clManager.cpp
 
 HEADERS += \
     clcpu.h \
     clgpu.h \
     clcpugpu.cl.h \
-    CpuGpuBuffer.h
+    CpuGpuBuffer.h \
+    clManager.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
