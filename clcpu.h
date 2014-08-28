@@ -1,6 +1,7 @@
 #ifndef CLCPU_H
 #define CLCPU_H
 
+#include <array>
 #include <CL/cl.hpp>
 #include <math.h>
 
@@ -13,11 +14,13 @@
 
 class CpuRange {
 public:
-    explicit CpuRange(const cl::NDRange & global, const cl::NDRange & local);
+    explicit CpuRange(const std::array<size_t, 3> & global, const std::array<size_t, 3> & local, const std::array<size_t, 3> & offset = {0, 0, 0})
+        : global_ids(global)
+    {}
 
-    size_t get_global_id(uint dimindx) { return global_ids[dimindx]++; }
+    size_t get_global_id(uint dimindx) { return global_ids[dimindx]; }
 private:
-    size_t global_ids[3] = {0, 0, 0};
+    std::array<size_t, 3> global_ids;
 };
 
 #define get_global_id(dimindx) range.get_global_id(dimindx)
