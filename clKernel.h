@@ -12,6 +12,9 @@ public:
         :   cl::Kernel(program, name)
     {}
 
+    clKernel()
+    {}
+
     template<typename... Values> void RunKernel(cl::CommandQueue commandQueue, KernelRunningSettings const & runningSettings, Values... values) {
         SetAllArgs(values...);
         commandQueue.enqueueNDRangeKernel(*this, runningSettings.GetOffsetClNDRange(), runningSettings.GetGlobalClNDRange(), runningSettings.GetLocalClNDRange());
