@@ -14,7 +14,8 @@ QMAKE_CXXFLAGS += -std=gnu++0x
 SOURCES += \
     CpuGpuBuffer.cpp \
     clManager.cpp \
-    KernelRunningSettings.cpp
+    KernelRunningSettings.cpp \
+    clProgramWrapper.cpp
 
 HEADERS += \
     clcpu.h \
@@ -22,8 +23,9 @@ HEADERS += \
     clcpugpu.cl.h \
     CpuGpuBuffer.h \
     clManager.h \
-    clKernel.h \
-    KernelRunningSettings.h
+    KernelRunningSettings.h \
+    clKernelWrapper.h \
+    clProgramWrapper.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

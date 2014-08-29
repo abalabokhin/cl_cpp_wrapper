@@ -1,18 +1,18 @@
-#ifndef CLKERNEL_H
-#define CLKERNEL_H
+#ifndef CLKERNELWRAPPER_H
+#define CLKERNELWRAPPER_H
 
 #include "KernelRunningSettings.h"
 
 #include <CL/cl.hpp>
 
-class clKernel : public cl::Kernel
+class clKernelWrapper : public cl::Kernel
 {
 public:
-    clKernel(const cl::Program &program, const char *name)
+    clKernelWrapper(const cl::Program &program, const char *name)
         :   cl::Kernel(program, name)
     {}
 
-    clKernel()
+    clKernelWrapper()
     {}
 
     template<typename... Values> void RunKernel(cl::CommandQueue commandQueue, KernelRunningSettings const & runningSettings, Values... values) {
@@ -37,4 +37,4 @@ private:
     int iArg = 0;
 };
 
-#endif // CLKERNEL_H
+#endif // CLKERNELWRAPPER_H
