@@ -12,7 +12,6 @@ CONFIG += staticlib
 QMAKE_CXXFLAGS += -std=gnu++0x
 
 SOURCES += \
-    CpuGpuBuffer.cpp \
     clManager.cpp \
     KernelRunningSettings.cpp \
     clProgramWrapper.cpp
