@@ -8,17 +8,17 @@
 class clKernelWrapper : public cl::Kernel
 {
 public:
-    clKernelWrapper(const cl::Program &program, const char *name)
-        :   cl::Kernel(program, name)
+    clKernelWrapper(const cl::Program &program, const cl::CommandQueue &cq, const char *name)
+        :   cl::Kernel(program, name), defaultCq(&cq)
     {}
 
     clKernelWrapper()
     {}
 
-    template<typename... Values> void RunKernel(cl::CommandQueue commandQueue, KernelRunningSettings const & runningSettings, Values... values) {
+    template<typename... Values> void RunKernel(KernelRunningSettings const & runningSettings, Values... values) {
         SetAllArgs(values...);
-        commandQueue.enqueueNDRangeKernel(*this, runningSettings.GetOffsetClNDRange(), runningSettings.GetGlobalClNDRange(), runningSettings.GetLocalClNDRange());
-        commandQueue.finish();
+        defaultCq->enqueueNDRangeKernel(*this, runningSettings.GetOffsetClNDRange(), runningSettings.GetGlobalClNDRange(), runningSettings.GetLocalClNDRange());
+        defaultCq->finish();
     }
 
     template<typename... Values> void SetAllArgs(Values... values) {
@@ -45,6 +45,7 @@ private:
     }
 
     int iArg = 0;
+    const cl::CommandQueue * defaultCq;
 };
 
 #endif // CLKERNELWRAPPER_H
