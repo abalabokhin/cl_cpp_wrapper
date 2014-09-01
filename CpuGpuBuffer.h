@@ -10,10 +10,8 @@ enum class BufferType {
     GPU
 };
 
-class ICpuGpuBuffer {};
-
 template <typename T>
-class CpuGpuBuffer : public ICpuGpuBuffer {
+class CpuGpuBuffer {
 public:
     CpuGpuBuffer(const cl::Context & context, const cl::CommandQueue &cq, size_t bufferSize)
     :   type(BufferType::NONE), size(bufferSize), defaultCq(&cq)
