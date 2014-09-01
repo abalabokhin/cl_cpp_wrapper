@@ -34,6 +34,7 @@ private:
         setArg(iArg++, head);
         AddArgs(tail...);
     }
+
     int iArg = 0;
 };
 

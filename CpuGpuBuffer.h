@@ -10,11 +10,13 @@ enum class BufferType {
     GPU
 };
 
+class ICpuGpuBuffer {};
+
 template <typename T>
-class CpuGpuBuffer {
+class CpuGpuBuffer : public ICpuGpuBuffer {
 public:
-    CpuGpuBuffer(const cl::Context & context, size_t bufferSize)
-    :   type(BufferType::NONE), size(bufferSize)
+    CpuGpuBuffer(const cl::Context & context, const cl::CommandQueue &cq, size_t bufferSize)
+    :   type(BufferType::NONE), size(bufferSize), defaultCq(&cq)
     {
         cpuBuffer = std::vector<T>(size);
         gpuBuffer = cl::Buffer(context, CL_MEM_READ_WRITE, size * sizeof(T));
@@ -22,17 +24,17 @@ public:
 
     size_t getSize() { return size; }
 
-    T * getCpuBuffer(cl::CommandQueue &cq) {
+    T * getCpuBuffer() {
         if (type == BufferType::GPU) {
-            cq.enqueueReadBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
+            defaultCq->enqueueReadBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
         }
         type = BufferType::CPU;
         return cpuBuffer.data();
     }
 
-    cl::Buffer & getGpuBuffer(cl::CommandQueue &cq) {
+    cl::Buffer & getGpuBuffer() {
         if (type == BufferType::CPU) {
-            cq.enqueueWriteBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
+            defaultCq->enqueueWriteBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
         }
         type = BufferType::GPU;
         return gpuBuffer;
@@ -43,6 +45,7 @@ private:
     cl::Buffer gpuBuffer;
     BufferType type;
     size_t size;
+    const cl::CommandQueue * defaultCq;
 };
 
 #endif // CPUGPUBUFFER_H
