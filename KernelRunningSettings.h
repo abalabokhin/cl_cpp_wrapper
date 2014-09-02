@@ -11,6 +11,10 @@ public:
     cl::NDRange GetLocalClNDRange() const;
     cl::NDRange GetGlobalClNDRange() const;
     cl::NDRange GetOffsetClNDRange() const;
+
+    std::array<int, 3> const & GetLocalRange() const { return local; }
+    std::array<int, 3> const & GetGlobalRange() const { return global; }
+    std::array<int, 3> const & GetOffsetRange() const { return offset; }
 private:
     std::array<int, 3> global;
     std::array<int, 3> local;

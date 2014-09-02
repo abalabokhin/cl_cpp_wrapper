@@ -14,7 +14,7 @@
 
 class CpuRange {
 public:
-    explicit CpuRange(const std::array<size_t, 3> & global, const std::array<size_t, 3> & local, const std::array<size_t, 3> & offset = {0, 0, 0})
+    explicit CpuRange(const std::array<size_t, 3> & global, const std::array<size_t, 3> & local = {0, 0, 0}, const std::array<size_t, 3> & offset = {0, 0, 0})
         : global_ids(global)
     {}
 

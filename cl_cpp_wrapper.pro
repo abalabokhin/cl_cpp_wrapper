@@ -23,8 +23,9 @@ HEADERS += \
     CpuGpuBuffer.h \
     clManager.h \
     KernelRunningSettings.h \
-    clKernelWrapper.h \
-    clProgramWrapper.h
+    clProgramWrapper.h \
+    clGpuKernel.h \
+    clCpuKernel.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

@@ -1,18 +1,21 @@
-#ifndef CLKERNELWRAPPER_H
-#define CLKERNELWRAPPER_H
+#ifndef CLGPUKERNEL_H
+#define CLGPUKERNEL_H
 
 #include "KernelRunningSettings.h"
 #include "CpuGpuBuffer.h"
 #include <CL/cl.hpp>
 
-class clKernelWrapper : public cl::Kernel
+#define createGpuKernel(program, cq, name) \
+    clGpuKernel(program, cq, "name")
+
+class clGpuKernel : public cl::Kernel
 {
 public:
-    clKernelWrapper(const cl::Program &program, const cl::CommandQueue &cq, const char *name)
+    clGpuKernel(const cl::Program &program, const cl::CommandQueue &cq, const char *name)
         :   cl::Kernel(program, name), defaultCq(&cq)
     {}
 
-    clKernelWrapper()
+    clGpuKernel()
     {}
 
     template<typename... Values> void RunKernel(KernelRunningSettings const & runningSettings, Values... values) {
@@ -48,4 +51,4 @@ private:
     const cl::CommandQueue * defaultCq;
 };
 
-#endif // CLKERNELWRAPPER_H
+#endif // CLGPUKERNEL_H
