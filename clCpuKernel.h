@@ -17,18 +17,35 @@ public:
     {}
 
     template<typename... Values> void RunKernel(KernelRunningSettings const & runningSettings, Values... values) {
-        //auto newFn = SetAllArgs(values...);
-        std::function<void(CpuRange)> newFn = AddArgs(std::function<void(Values... values, CpuRange)>(*function), values...);
+        //std::function<void(CpuRange)> newFn = AddArgs(std::function<void(Values... values, CpuRange)>(*function), values...);
+        auto globalRange = runningSettings.GetGlobalRange();
+        if (globalRange[2] != 0) {
+            for (int i1 = 0; i1 < runningSettings.GetGlobalRange()[0]; ++i1) {
+                for (int i2 = 0; i2 < runningSettings.GetGlobalRange()[1]; ++i2) {
+                    for (int i3 = 0; i3 < runningSettings.GetGlobalRange()[2]; ++i3) {
+                        //newFn(CpuRange({i1, i2, i3}));
+                        function(values..., CpuRange({i1, i2, i3}));
+                    }
+                }
+            }
+            return;
+        }
+        if (globalRange[1] != 0) {
+            for (int i1 = 0; i1 < runningSettings.GetGlobalRange()[0]; ++i1) {
+                for (int i2 = 0; i2 < runningSettings.GetGlobalRange()[1]; ++i2) {
+                    //newFn(CpuRange({i1, i2, 0}));
+                    function(values..., CpuRange({i1, i2, 0}));
+                }
+            }
+            return;
+        }
 
-        for (int i1 = 0; i1 < runningSettings.GetGlobalRange()[0]; ++i1)
-            for (int i2 = 0; i2 < runningSettings.GetGlobalRange()[1]; ++i2)
-                for (int i3 = 0; i3 < runningSettings.GetGlobalRange()[2]; ++i3)
-                    newFn(CpuRange({i1, i2, i3}));
+        for (int i1 = 0; i1 < runningSettings.GetGlobalRange()[0]; ++i1) {
+            //newFn(CpuRange({i1, i2, 0}));
+            function(values..., CpuRange({i1, 0, 0}));
+        }
     }
 
-    /*template<typename... Values> auto SetAllArgs(Values... values) {
-        return AddArgs(function, values...);
-    }*/
 private:
     std::function<void(CpuRange)> AddArgs(std::function<void(CpuRange)> fn) {
         return fn;
