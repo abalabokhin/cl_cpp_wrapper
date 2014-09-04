@@ -14,11 +14,13 @@ template <typename T>
 class CpuGpuBuffer {
 public:
     CpuGpuBuffer(const cl::Context & context, const cl::CommandQueue &cq, size_t bufferSize)
-    :   type(BufferType::NONE), size(bufferSize), defaultCq(&cq)
+    :   size(bufferSize), defaultCq(&cq)
     {
         cpuBuffer = std::vector<T>(size);
         gpuBuffer = cl::Buffer(context, CL_MEM_READ_WRITE, size * sizeof(T));
     }
+
+    CpuGpuBuffer() {}
 
     size_t getSize() { return size; }
 
@@ -41,8 +43,8 @@ public:
 private:
     std::vector<T> cpuBuffer;
     cl::Buffer gpuBuffer;
-    BufferType type;
-    size_t size;
+    BufferType type = BufferType::NONE;
+    size_t size = 0;
     const cl::CommandQueue * defaultCq;
 };
 
