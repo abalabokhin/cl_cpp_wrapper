@@ -13,7 +13,6 @@ QMAKE_CXXFLAGS += -std=gnu++0x
 
 SOURCES += \
     clManager.cpp \
-    KernelRunningSettings.cpp \
     clProgramWrapper.cpp
 
 HEADERS += \

@@ -1,6 +1,6 @@
 #ifndef CLGPU_H
 #define CLGPU_H
 
-typedef int CpuRange;
+typedef int KernelRunningSettings;
 
 #endif // CLGPU_H
