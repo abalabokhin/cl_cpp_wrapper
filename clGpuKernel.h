@@ -26,13 +26,12 @@ public:
 
     template<typename... Values> void SetAllArgs(Values... values) {
         iArg = 0;
+        SetArg(0);
         AddArgs(values...);
     }
 
 private:
-    void AddArgs() {
-        SetArg(0);
-    }
+    void AddArgs() {}
 
     template<typename T, typename... Tail> void AddArgs(T head, Tail... tail) {
         SetArg(head);
