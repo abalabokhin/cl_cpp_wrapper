@@ -30,4 +30,4 @@ unix {
     INSTALLS += target
 }
 
-unix:INCLUDEPATH += "/opt/AMDAPP/include"
+unix:INCLUDEPATH += "$$(AMDAPPSDKROOT)/include"
