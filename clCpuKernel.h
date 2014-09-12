@@ -96,6 +96,21 @@ private:
     std::function<void(KernelRunningSettings, FAT2, FAT3, FAT4, FAT5)> SetArg(std::function<void(KernelRunningSettings, FAT1, FAT2, FAT3, FAT4, FAT5)> fn, ArgsT value) {
         return std::bind(fn, std::placeholders::_1, value, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5);
     }
+
+    template <typename ArgsT, typename FAT1, typename FAT2, typename FAT3, typename FAT4, typename FAT5, typename FAT6>
+    std::function<void(KernelRunningSettings, FAT2, FAT3, FAT4, FAT5, FAT6)> SetArg(std::function<void(KernelRunningSettings, FAT1, FAT2, FAT3, FAT4, FAT5, FAT6)> fn, ArgsT value) {
+        return std::bind(fn, std::placeholders::_1, value, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
+    }
+
+    template <typename ArgsT, typename FAT1, typename FAT2, typename FAT3, typename FAT4, typename FAT5, typename FAT6, typename FAT7>
+    std::function<void(KernelRunningSettings, FAT2, FAT3, FAT4, FAT5, FAT6, FAT7)> SetArg(std::function<void(KernelRunningSettings, FAT1, FAT2, FAT3, FAT4, FAT5, FAT6, FAT7)> fn, ArgsT value) {
+        return std::bind(fn, std::placeholders::_1, value, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
+    }
+
+    template <typename ArgsT, typename FAT1, typename FAT2, typename FAT3, typename FAT4, typename FAT5, typename FAT6, typename FAT7, typename FAT8>
+    std::function<void(KernelRunningSettings, FAT2, FAT3, FAT4, FAT5, FAT6, FAT7, FAT8)> SetArg(std::function<void(KernelRunningSettings, FAT1, FAT2, FAT3, FAT4, FAT5, FAT6, FAT7, FAT8)> fn, ArgsT value) {
+        return std::bind(fn, std::placeholders::_1, value, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7, std::placeholders::_8);
+    }
 private:
     Fn * function;
 };

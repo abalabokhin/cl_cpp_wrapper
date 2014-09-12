@@ -40,6 +40,11 @@ public:
         return gpuBuffer;
     }
 
+    void setGpuBuffer(cl::Buffer & newGpuBuffer) {
+        type = BufferType::GPU;
+        gpuBuffer = newGpuBuffer;
+    }
+
 private:
     std::vector<T> cpuBuffer;
     cl::Buffer gpuBuffer;
