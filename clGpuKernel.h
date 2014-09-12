@@ -5,8 +5,8 @@
 #include "CpuGpuBuffer.h"
 #include <CL/cl.hpp>
 
-#define createGpuKernel(program, cq, name) \
-    clGpuKernel(program, cq, "name")
+#define CREATE_GPU_KERNEL(variableName, kernelName, programVariableName) clGpuKernel variableName = \
+    clGpuKernel(programVariableName.GetProgram(), OpenCLManager::GetInstance()->GetDefaultCommandQueue(), "kernelName");
 
 class clGpuKernel : public cl::Kernel
 {

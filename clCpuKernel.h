@@ -5,6 +5,8 @@
 #include "CpuGpuBuffer.h"
 #include <functional>
 
+#define CREATE_CPU_KERNEL(variableName, kernelName) clCpuKernel<decltype(::kernelName)> variableName = clCpuKernel<decltype(::kernelName)>(::kernelName);
+
 template <class Fn> class clCpuKernel
 {
 public:
