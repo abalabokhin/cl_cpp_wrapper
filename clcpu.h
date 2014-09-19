@@ -3,7 +3,7 @@
 
 #include <array>
 #include <CL/cl.hpp>
-#include <math.h>
+#include <cmath>
 #include <KernelRunningSettings.h>
 
 #define __global
@@ -48,6 +48,10 @@ inline float4 cross(float4 const & vector1, float4 const & vector2) {
         vector1.s1 * vector2.s2 - vector1.s2 * vector2.s1,
         0
     };
+}
+
+inline float distance(const uint4 & point1, const uint4 & point2) {
+    return sqrt(pow(point1.s0 - point2.s0, 2) + pow(point1.s1 - point2.s1, 2) + pow(point1.s2 - point2.s2, 2) + pow(point1.s3 - point2.s3, 2));
 }
 
 #endif // CLCPU_H
