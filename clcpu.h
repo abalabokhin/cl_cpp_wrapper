@@ -51,7 +51,10 @@ inline float4 cross(float4 const & vector1, float4 const & vector2) {
 }
 
 inline float distance(const uint4 & point1, const uint4 & point2) {
-    return sqrt(pow(point1.s0 - point2.s0, 2) + pow(point1.s1 - point2.s1, 2) + pow(point1.s2 - point2.s2, 2) + pow(point1.s3 - point2.s3, 2));
+    return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
+                pow((int)point1.s1 - (int)point2.s1, 2) +
+                pow((int)point1.s2 - (int)point2.s2, 2) +
+                pow((int)point1.s3 - (int)point2.s3, 2));
 }
 
 #endif // CLCPU_H
