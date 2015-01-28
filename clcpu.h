@@ -57,4 +57,8 @@ inline float distance(const uint4 & point1, const uint4 & point2) {
                 pow((int)point1.s3 - (int)point2.s3, 2));
 }
 
+inline bool operator == (uint4 const & left, uint4 const & right) {
+    return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
+}
+
 #endif // CLCPU_H
