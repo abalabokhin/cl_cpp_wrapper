@@ -12,6 +12,7 @@
 #define uint4 cl_uint4
 #define uint2 cl_uint2
 #define float4 cl_float4
+#define int4 cl_int4
 
 template <typename T>
 inline T atomic_inc(T *t) {
@@ -31,7 +32,7 @@ inline float4 operator * (float4 const & vector, float const & scale) {
 }
 
 inline float4 normalize(float4 const & vector) {
-    float lenght = pow(vector.s0, 2) + pow(vector.s1, 2) + pow(vector.s2, 2) + pow(vector.s3, 2);
+    float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2) + pow(vector.s2, 2) + pow(vector.s3, 2));
     if (lenght == 0)
         return vector;
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
@@ -57,8 +58,42 @@ inline float distance(const uint4 & point1, const uint4 & point2) {
                 pow((int)point1.s3 - (int)point2.s3, 2));
 }
 
+inline float distance(const int4 & point1, const uint4 & point2) {
+    return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
+                pow((int)point1.s1 - (int)point2.s1, 2) +
+                pow((int)point1.s2 - (int)point2.s2, 2) +
+                pow((int)point1.s3 - (int)point2.s3, 2));
+}
+
 inline bool operator == (uint4 const & left, uint4 const & right) {
     return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
+}
+
+inline bool operator != (uint4 const & left, uint4 const & right) {
+    return !(left == right);
+}
+
+inline int4 operator - (uint4 const & left, uint4 const & right) {
+    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
+}
+
+inline int4 operator - (uint4 const & left, int4 const & right) {
+    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
+}
+
+inline int4 operator - (int4 const & left, uint4 const & right) {
+    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
+}
+
+inline int4 operator + (uint4 const & left, int4 const & right) {
+    return int4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
+}
+
+inline float4 normalize(int4 const & vector) {
+    float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2) + pow(vector.s2, 2) + pow(vector.s3, 2));
+    if (lenght == 0)
+        return float4 {vector.s0, vector.s1, vector.s2, vector.s3};
+    return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
 }
 
 #endif // CLCPU_H
