@@ -1,8 +1,9 @@
+#include "clManager.h"
 #include "clProgramWrapper.h"
 #include <fstream>
 #include <iostream>
 
-clProgramWrapper::clProgramWrapper(const cl::Context & context, std::string const & filename, std::vector<std::string> const & includePaths, std::vector<std::string> const & defines)
+clProgramWrapper::clProgramWrapper(const cl::Context & context, const std::vector<cl::Device> & devices, std::string const & filename, std::vector<std::string> const & includePaths, std::vector<std::string> const & defines)
 {
     /// read all from the file into string
     std::ifstream in(filename);
@@ -23,12 +24,12 @@ clProgramWrapper::clProgramWrapper(const cl::Context & context, std::string cons
     commandLineString += " -D GPU_OPENCL";
 
     cl::Program::Sources source(1, std::make_pair(src.data(), src.size()));
-    program = cl::Program(context, source);
+    program = cl::Program(context, source, nullptr);
     try {
-        program.build(commandLineString.c_str());
+        program.build(devices, commandLineString.c_str());
     } catch (...)
     {}
     /// throw a normal exception here if there are any build errors.
-    std::string str = program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(context.getInfo<CL_CONTEXT_DEVICES>()[0]);
+    std::string str = program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(OpenCLManager::GetInstance()->GetDefaultDevices()[0]);
     std::cout << "Build log:" << str.c_str() << "\n";
 }

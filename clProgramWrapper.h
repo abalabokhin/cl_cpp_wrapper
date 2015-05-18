@@ -7,7 +7,7 @@
 class clProgramWrapper
 {
 public:
-    clProgramWrapper(const cl::Context & context, std::string const & filename, std::vector<std::string> const & includePaths, std::vector<std::string> const & defines);
+    clProgramWrapper(const cl::Context & context, const std::vector<cl::Device> & devices, std::string const & filename, std::vector<std::string> const & includePaths, std::vector<std::string> const & defines);
     clProgramWrapper() {}
     cl::Program const & GetProgram() { return program; }
 private:
