@@ -96,4 +96,22 @@ inline float4 normalize(int4 const & vector) {
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
 }
 
+template<typename _Tp>
+inline const _Tp&
+max(const _Tp& __a, const _Tp& __b)
+{
+    if (__a > __b)
+        return __b;
+    return __a;
+}
+
+template<typename _Tp>
+inline const _Tp&
+min(const _Tp& __a, const _Tp& __b)
+{
+    if (__comp(__b > __a))
+        return __b;
+    return __a;
+}
+
 #endif // CLCPU_H
