@@ -101,17 +101,17 @@ inline const _Tp&
 max(const _Tp& __a, const _Tp& __b)
 {
     if (__a > __b)
-        return __b;
-    return __a;
+        return __a;
+    return __b;
 }
 
 template<typename _Tp>
 inline const _Tp&
 min(const _Tp& __a, const _Tp& __b)
 {
-    if (__comp(__b > __a))
-        return __b;
-    return __a;
+    if (__b > __a)
+        return __a;
+    return __b;
 }
 
 #endif // CLCPU_H
