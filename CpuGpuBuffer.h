@@ -20,6 +20,14 @@ public:
         gpuBuffer = cl::Buffer(context, CL_MEM_READ_WRITE, size * sizeof(T));
     }
 
+    CpuGpuBuffer(const cl::Context & context, const cl::CommandQueue &cq, size_t bufferSize, T const & defaultValue)
+    :   size(bufferSize), defaultCq(&cq)
+    {
+        cpuBuffer = std::vector<T>(size, defaultValue);
+        gpuBuffer = cl::Buffer(context, CL_MEM_READ_WRITE, size * sizeof(T));
+        defaultCq->enqueueWriteBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
+    }
+
     CpuGpuBuffer() {}
 
     size_t getSize() { return size; }
