@@ -56,7 +56,9 @@ OpenCLManager::OpenCLManager()
         }
     }
 
-    defaultContext = entities[defaultEntityNumber].context;
-    defaultCommandQueue = entities[defaultEntityNumber].queue;
-    defaultDevice = {entities[defaultEntityNumber].device};
+    if ((size_t)defaultEntityNumber < entities.size()) {
+        defaultContext = entities[defaultEntityNumber].context;
+        defaultCommandQueue = entities[defaultEntityNumber].queue;
+        defaultDevice = {entities[defaultEntityNumber].device};
+    }
 }
