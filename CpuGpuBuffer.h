@@ -32,6 +32,22 @@ public:
 
     size_t getSize() { return size; }
 
+    CpuGpuBuffer<T> CopyBuffer(const cl::Context & context) {
+        CpuGpuBuffer<T> result(context, *defaultCq, size);
+        result.type = type;
+        if (type == BufferType::GPU) {
+            defaultCq->enqueueCopyBuffer(getGpuBuffer(), result.getGpuBuffer(), 0, 0, size * sizeof(T));
+        } else {
+            result.cpuBuffer = cpuBuffer;
+        }
+        return result;
+//        if (type == BufferType::GPU) {
+//            defaultCq->enqueueReadBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
+//        }
+//        type = BufferType::CPU;
+//        return cpuBuffer.data();
+    }
+
     T * getCpuBuffer() {
         if (type == BufferType::GPU) {
             defaultCq->enqueueReadBuffer(gpuBuffer, CL_TRUE, 0, size * sizeof(T), cpuBuffer.data());
