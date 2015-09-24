@@ -31,3 +31,4 @@ unix {
 }
 
 unix:INCLUDEPATH += "$$(AMDAPPSDKROOT)/include"
+unix:INCLUDEPATH += "/opt/AMDAPPSDK-3.0/include/"
