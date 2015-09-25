@@ -19,6 +19,13 @@ inline T atomic_inc(T *t) {
     return (*t)++;
 }
 
+template <typename T>
+inline T atomic_add(T *t, T addition) {
+    auto oldValue = *t;
+    (*t)+=addition;
+    return oldValue;
+}
+
 inline float4 operator - (float4 const & left, float4 const & right) {
     return float4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
 }
