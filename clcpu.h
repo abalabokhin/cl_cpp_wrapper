@@ -12,7 +12,9 @@
 #define uint4 cl_uint4
 #define uint2 cl_uint2
 #define float4 cl_float4
+#define float2 cl_float2
 #define int4 cl_int4
+#define int2 cl_int2
 
 template <typename T>
 inline T atomic_inc(T *t) {
@@ -45,8 +47,19 @@ inline float4 normalize(float4 const & vector) {
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
 }
 
+inline float2 normalize(float2 const & vector) {
+    float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2));
+    if (lenght == 0)
+        return vector;
+    return float2 {vector.s0 / lenght, vector.s1 / lenght};
+}
+
 inline float dot(float4 const & vector1, float4 const & vector2) {
     return vector1.s0 * vector2.s0 + vector1.s1 * vector2.s1 + vector1.s2 * vector2.s2 + vector1.s3 * vector2.s3;
+}
+
+inline float dot(float2 const & vector1, float2 const & vector2) {
+    return vector1.s0 * vector2.s0 + vector1.s1 * vector2.s1;
 }
 
 inline float4 cross(float4 const & vector1, float4 const & vector2) {
@@ -101,6 +114,13 @@ inline float4 normalize(int4 const & vector) {
     if (lenght == 0)
         return float4 {vector.s0, vector.s1, vector.s2, vector.s3};
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
+}
+
+inline float2 normalize(int2 const & vector) {
+    float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2));
+    if (lenght == 0)
+        return float2 {vector.s0, vector.s1};
+    return float2 {vector.s0 / lenght, vector.s1 / lenght};
 }
 
 template<typename _Tp>
