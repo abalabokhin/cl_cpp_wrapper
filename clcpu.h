@@ -28,6 +28,14 @@ inline T atomic_add(T *t, T addition) {
     return oldValue;
 }
 
+inline float2 operator - (float2 const & left, float2 const & right) {
+    return float2 {left.s0 - right.s0, left.s1 - right.s1};
+}
+
+inline float2 operator + (float2 const & left, float2 const & right) {
+    return float2 {left.s0 + right.s0, left.s1 + right.s1};
+}
+
 inline float4 operator - (float4 const & left, float4 const & right) {
     return float4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
 }
