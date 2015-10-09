@@ -124,6 +124,14 @@ inline float4 normalize(int4 const & vector) {
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
 }
 
+inline int2 operator - (int2 const & left, int2 const & right) {
+    return int2 {left.s0 - right.s0, left.s1 - right.s1};
+}
+
+inline int2 operator + (int2 const & left, int2 const & right) {
+    return int2 {left.s0 + right.s0, left.s1 + right.s1};
+}
+
 inline float2 normalize(int2 const & vector) {
     float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2));
     if (lenght == 0)
