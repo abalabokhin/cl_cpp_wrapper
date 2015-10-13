@@ -128,6 +128,10 @@ inline int2 operator - (int2 const & left, int2 const & right) {
     return int2 {left.s0 - right.s0, left.s1 - right.s1};
 }
 
+inline bool operator == (int2 const & left, int2 const & right) {
+    return left.s0 == right.s0 && left.s1 == right.s1;
+}
+
 inline int2 operator + (int2 const & left, int2 const & right) {
     return int2 {left.s0 + right.s0, left.s1 + right.s1};
 }
