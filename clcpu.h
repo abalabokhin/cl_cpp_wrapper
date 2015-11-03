@@ -118,6 +118,10 @@ inline int4 operator - (int4 const & left, uint4 const & right) {
     return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
 }
 
+inline int4 operator - (int4 const & left, int4 const & right) {
+    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
+}
+
 inline int4 operator + (uint4 const & left, int4 const & right) {
     return int4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
 }
