@@ -93,6 +93,13 @@ inline float distance(const int4 & point1, const uint4 & point2) {
                 pow((int)point1.s3 - (int)point2.s3, 2));
 }
 
+inline float distance(const int4 & point1, const int4 & point2) {
+    return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
+                pow((int)point1.s1 - (int)point2.s1, 2) +
+                pow((int)point1.s2 - (int)point2.s2, 2) +
+                pow((int)point1.s3 - (int)point2.s3, 2));
+}
+
 inline float distance(const int2 & point1, const int2 & point2) {
     return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
                 pow((int)point1.s1 - (int)point2.s1, 2));
@@ -102,7 +109,15 @@ inline bool operator == (uint4 const & left, uint4 const & right) {
     return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
 }
 
+inline bool operator == (int4 const & left, int4 const & right) {
+    return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
+}
+
 inline bool operator != (uint4 const & left, uint4 const & right) {
+    return !(left == right);
+}
+
+inline bool operator != (int4 const & left, int4 const & right) {
     return !(left == right);
 }
 
@@ -123,6 +138,10 @@ inline int4 operator - (int4 const & left, int4 const & right) {
 }
 
 inline int4 operator + (uint4 const & left, int4 const & right) {
+    return int4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
+}
+
+inline int4 operator + (int4 const & left, int4 const & right) {
     return int4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
 }
 
