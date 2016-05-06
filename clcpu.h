@@ -113,11 +113,19 @@ inline bool operator == (int4 const & left, int4 const & right) {
     return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
 }
 
+inline bool operator == (int2 const & left, int2 const & right) {
+    return left.s0 == right.s0 && left.s1 == right.s1;
+}
+
 inline bool operator != (uint4 const & left, uint4 const & right) {
     return !(left == right);
 }
 
 inline bool operator != (int4 const & left, int4 const & right) {
+    return !(left == right);
+}
+
+inline bool operator != (int2 const & left, int2 const & right) {
     return !(left == right);
 }
 
@@ -154,10 +162,6 @@ inline float4 normalize(int4 const & vector) {
 
 inline int2 operator - (int2 const & left, int2 const & right) {
     return int2 {left.s0 - right.s0, left.s1 - right.s1};
-}
-
-inline bool operator == (int2 const & left, int2 const & right) {
-    return left.s0 == right.s0 && left.s1 == right.s1;
 }
 
 inline int2 operator + (int2 const & left, int2 const & right) {
