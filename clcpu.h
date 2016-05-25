@@ -5,6 +5,7 @@
 #include <CL/cl.hpp>
 #include <cmath>
 #include <KernelRunningSettings.h>
+#include <limits.h>
 
 #define __global
 #define __kernel
