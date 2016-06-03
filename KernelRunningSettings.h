@@ -7,7 +7,7 @@
 class KernelRunningSettings
 {
 public:
-    KernelRunningSettings(const std::array<size_t, 3> & global, const std::array<size_t, 3> & local, const std::array<size_t, 3> & offset = {0, 0, 0})
+    KernelRunningSettings(const std::array<int, 3> & global, const std::array<int, 3> & local, const std::array<int, 3> & offset = {0, 0, 0})
         : global(global), local(local), offset(offset)
     {}
 
@@ -44,13 +44,13 @@ public:
     }
 
 
-    size_t getLocalId(uint dimindx) const { return local[dimindx]; }
-    size_t getGlobalId(uint dimindx) const { return global[dimindx]; }
-    std::array<size_t, 3> const & GetOffsetRange() const { return offset; }
+    int getLocalId(uint dimindx) const { return local[dimindx]; }
+    int getGlobalId(uint dimindx) const { return global[dimindx]; }
+    std::array<int, 3> const & GetOffsetRange() const { return offset; }
 private:
-    std::array<size_t, 3> global;
-    std::array<size_t, 3> local;
-    std::array<size_t, 3> offset;
+    std::array<int, 3> global;
+    std::array<int, 3> local;
+    std::array<int, 3> offset;
 };
 
 #define get_global_id(dimindx) range.getGlobalId(dimindx)
