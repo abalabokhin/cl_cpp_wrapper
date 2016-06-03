@@ -110,6 +110,10 @@ inline float length(const int2 & point1) {
     return sqrt(pow(point1.s0, 2) + pow(point1.s1, 2));
 }
 
+inline float length(const float2 & point1) {
+    return sqrt(pow(point1.s0, 2) + pow(point1.s1, 2));
+}
+
 inline bool operator == (uint4 const & left, uint4 const & right) {
     return left.s0 == right.s0 && left.s1 == right.s1 && left.s2 == right.s2 && left.s3 == right.s3;
 }
