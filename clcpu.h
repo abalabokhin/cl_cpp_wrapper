@@ -9,6 +9,7 @@
 
 #define __global
 #define __kernel
+#define __constant
 #define uint cl_uint
 #define uint4 cl_uint4
 #define uint2 cl_uint2
