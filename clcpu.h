@@ -84,22 +84,19 @@ inline float4 cross(float4 const & vector1, float4 const & vector2) {
 inline float distance(const uint4 & point1, const uint4 & point2) {
     return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
                 pow((int)point1.s1 - (int)point2.s1, 2) +
-                pow((int)point1.s2 - (int)point2.s2, 2) +
-                pow((int)point1.s3 - (int)point2.s3, 2));
+                pow((int)point1.s2 - (int)point2.s2, 2));
 }
 
 inline float distance(const int4 & point1, const uint4 & point2) {
     return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
                 pow((int)point1.s1 - (int)point2.s1, 2) +
-                pow((int)point1.s2 - (int)point2.s2, 2) +
-                pow((int)point1.s3 - (int)point2.s3, 2));
+                pow((int)point1.s2 - (int)point2.s2, 2));
 }
 
 inline float distance(const int4 & point1, const int4 & point2) {
     return sqrt(pow((int)point1.s0 - (int)point2.s0, 2) +
                 pow((int)point1.s1 - (int)point2.s1, 2) +
-                pow((int)point1.s2 - (int)point2.s2, 2) +
-                pow((int)point1.s3 - (int)point2.s3, 2));
+                pow((int)point1.s2 - (int)point2.s2, 2));
 }
 
 inline float distance(const int2 & point1, const int2 & point2) {
