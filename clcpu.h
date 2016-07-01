@@ -46,8 +46,12 @@ inline float4 operator + (float4 const & left, float4 const & right) {
     return float4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
 }
 
-inline float4 operator * (float4 const & vector, float const & scale) {
+inline float4 operator * (float4 const & vector, float scale) {
     return float4 {vector.s0 * scale, vector.s1 * scale, vector.s2 * scale, vector.s3 * scale};
+}
+
+inline float4 operator * (cl_int4 const & v, float k) {
+    return float4{(float)v.s0, (float)v.s1, (float)v.s2, (float)v.s3} * k;
 }
 
 inline float4 normalize(float4 const & vector) {
