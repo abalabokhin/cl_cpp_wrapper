@@ -2,7 +2,7 @@
 #define CPUGPUBUFFER_H
 
 #include <vector>
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 
 enum class BufferType {
     NONE,

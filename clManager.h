@@ -2,7 +2,7 @@
 #define CLMANAGER_H
 
 #include <memory>
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 
 enum class ClDeviceType {CPU, GPU};
 

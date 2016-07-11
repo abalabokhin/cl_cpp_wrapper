@@ -3,7 +3,7 @@
 
 #include "KernelRunningSettings.h"
 #include "CpuGpuBuffer.h"
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 
 #define CREATE_GPU_KERNEL(variableName, kernelName, programVariableName) clGpuKernel variableName = \
     clGpuKernel(programVariableName.GetProgram(), OpenCLManager::GetInstance()->GetDefaultCommandQueue(), "kernelName");

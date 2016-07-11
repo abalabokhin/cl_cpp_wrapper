@@ -1,7 +1,7 @@
 #ifndef CLPROGRAMWRAPPER_H
 #define CLPROGRAMWRAPPER_H
 
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 #include <vector>
 
 class clProgramWrapper

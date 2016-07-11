@@ -1,7 +1,7 @@
 #ifndef KERNELRUNNINGSETTINGS_H
 #define KERNELRUNNINGSETTINGS_H
 
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 #include <array>
 
 class KernelRunningSettings

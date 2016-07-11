@@ -2,7 +2,7 @@
 #define CLCPU_H
 
 #include <array>
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 #include <cmath>
 #include <KernelRunningSettings.h>
 #include <limits.h>

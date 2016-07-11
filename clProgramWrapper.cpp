@@ -23,7 +23,7 @@ clProgramWrapper::clProgramWrapper(const cl::Context & context, const std::vecto
     /// add GPU_OPENCL define
     commandLineString += " -D GPU_OPENCL";
 
-    cl::Program::Sources source(1, std::make_pair(src.data(), src.size()));
+    cl::Program::Sources source{src};
     program = cl::Program(context, source, nullptr);
     try {
         program.build(devices, commandLineString.c_str());
