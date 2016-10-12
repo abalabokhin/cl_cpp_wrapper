@@ -140,24 +140,8 @@ inline bool operator != (int2 const & left, int2 const & right) {
     return !(left == right);
 }
 
-inline int4 operator - (uint4 const & left, uint4 const & right) {
-    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
-}
-
-inline int4 operator - (uint4 const & left, int4 const & right) {
-    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
-}
-
-inline int4 operator - (int4 const & left, uint4 const & right) {
-    return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
-}
-
 inline int4 operator - (int4 const & left, int4 const & right) {
     return int4 {left.s0 - right.s0, left.s1 - right.s1, left.s2 - right.s2, left.s3 - right.s3};
-}
-
-inline int4 operator + (uint4 const & left, int4 const & right) {
-    return int4 {left.s0 + right.s0, left.s1 + right.s1, left.s2 + right.s2, left.s3 + right.s3};
 }
 
 inline int4 operator + (int4 const & left, int4 const & right) {
@@ -167,7 +151,7 @@ inline int4 operator + (int4 const & left, int4 const & right) {
 inline float4 normalize(int4 const & vector) {
     float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2) + pow(vector.s2, 2) + pow(vector.s3, 2));
     if (lenght == 0)
-        return float4 {vector.s0, vector.s1, vector.s2, vector.s3};
+        return float4 {(float)vector.s0, (float)vector.s1, (float)vector.s2, (float)vector.s3};
     return float4 {vector.s0 / lenght, vector.s1 / lenght, vector.s2 / lenght, vector.s3 / lenght};
 }
 
@@ -182,7 +166,7 @@ inline int2 operator + (int2 const & left, int2 const & right) {
 inline float2 normalize(int2 const & vector) {
     float lenght = sqrt(pow(vector.s0, 2) + pow(vector.s1, 2));
     if (lenght == 0)
-        return float2 {vector.s0, vector.s1};
+        return float2 {(float)vector.s0, (float)vector.s1};
     return float2 {vector.s0 / lenght, vector.s1 / lenght};
 }
 
